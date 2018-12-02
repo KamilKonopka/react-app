@@ -14,7 +14,7 @@ class Persons extends PureComponent {
     
     componentDidMount() {
         console.log('Persons.js] Inside componentDidMount()');
-        this.lastPersonRef.current.focus();
+        this.lastPersonRef.current.focusInput();
       }
 
     componentWillReceiveProps(nextProps) {
@@ -47,6 +47,7 @@ class Persons extends PureComponent {
                 ref={this.lastPersonRef}
                 click={() => this.props.clicked(index)}
                 changed={(event) => this.props.changed(event, person.id)}
+                authenticated={this.props.isAuthenticated}
                 />
         });
     }

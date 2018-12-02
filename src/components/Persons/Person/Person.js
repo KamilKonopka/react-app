@@ -20,13 +20,14 @@ class Person extends Component {
         console.log('Person.js] Inside componentDidMount()');
         // this.focusInput();
       }
-      focus() {
+      focusInput() {
           if(this.props.position === 0) this.inputElement.current.focus();
       }
 
     render() {
         return(
             <WithClass classes={styling.Person} >
+                {this.props.authenticated ? <p>I'm authenticated</p> : null}
                 <p onClick={this.props.click}>
                     I'm a {this.props.name} and I am {this.props.age} years old!!
                 </p>

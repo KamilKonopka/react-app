@@ -16,7 +16,8 @@ class App extends PureComponent {
         {id: '2', name: 'Manu', age: 29},
         {id: '3', name: 'Stephanie', age: 26}
       ],
-        toggleClicked: 0
+        toggleClicked: 0,
+        authenticated: false
     };
   }
 
@@ -90,6 +91,10 @@ class App extends PureComponent {
     });
   };
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  };
+
   render() {
     console.log('[App.js] Inside render()');
     let persons = null;
@@ -98,13 +103,16 @@ class App extends PureComponent {
       persons = <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />;
+            changed={this.nameChangedHandler}
+            isAuthenticated={this.state.authenticated}
+      />;
     }
 
     return (
       <WithClass classes={styling.App}>
         <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
-        <Cockpit 
+        <Cockpit
+            login={this.loginHandler}
           appTitle={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
