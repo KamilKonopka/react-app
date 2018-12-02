@@ -15,7 +15,8 @@ class App extends PureComponent {
         {id: '1', name: 'Max', age: 28},
         {id: '2', name: 'Manu', age: 29},
         {id: '3', name: 'Stephanie', age: 26}
-      ]
+      ],
+        toggleClicked: 0
     };
   }
 
@@ -50,21 +51,24 @@ class App extends PureComponent {
       {name: 'Stephanie', age: 26}
       ]
     });
-  }
+  };
 
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
-  }
+  };
 
   togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({
-      showPersons: !doesShow
-    });
-  }
+      const doesShow = this.state.showPersons;
+      this.setState((prevState, props) => {
+          return {
+              showPersons: !doesShow,
+              toggleClicked: prevState.toggleClicked + 1
+          }
+      });
+  };
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -84,7 +88,7 @@ class App extends PureComponent {
     this.setState({
       persons: persons
     });
-  }
+  };
 
   render() {
     console.log('[App.js] Inside render()');

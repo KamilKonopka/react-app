@@ -26,6 +26,6 @@ const cockpit = (props) => {
             >Toggle Persons</button>
         </Aux>
     );
-}
+};
 
 export default cockpit;
